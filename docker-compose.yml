@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB_DEV: postgres
+    volumes:
+      - ./.docker/services/db/data:/var/lib/postgresql/data
+      - ./.docker/services/db/volume:/docker-entrypoint-initdb.d
+    restart: always
